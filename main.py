@@ -3,6 +3,7 @@ import sqlite3
 
 from PyQt5 import uic
 from PyQt5.QtWidgets import QApplication, QMainWindow, QTableWidgetItem
+from addEditCoffeeForm import Uploading
 
 
 class MyWidget(QMainWindow):
@@ -10,7 +11,12 @@ class MyWidget(QMainWindow):
         super().__init__()
         uic.loadUi('main.ui', self)
         self.pushButton.clicked.connect(self.start)
+        self.pushButton_2.clicked.connect(self.new_data)
         self.con = sqlite3.connect('coffee.sqlite')
+
+    def new_data(self):
+        self.new_form = Uploading()
+        self.new_form.show()
 
     def start(self):
         cur = self.con.cursor()
