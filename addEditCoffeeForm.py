@@ -1,15 +1,15 @@
 import sqlite3
 
-from PyQt5 import uic
 from PyQt5.QtWidgets import QWidget
+from addEditCoffeeForm_form import Ui_Form
 
 
-class Uploading(QWidget):
+class Uploading(QWidget, Ui_Form):
     def __init__(self):
         super().__init__()
-        uic.loadUi('addEditCoffeeForm.ui', self)
+        self.setupUi(self)
         self.pushButton.clicked.connect(self.ready)
-        self.con = sqlite3.connect('coffee.sqlite')
+        self.con = sqlite3.connect('data/coffee.sqlite')
 
     def ready(self):
         if (not self.lineEdit.text() or not self.lineEdit_2.text() or not self.lineEdit_3.text() or
